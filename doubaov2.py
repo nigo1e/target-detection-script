@@ -11,12 +11,11 @@ class Matchmaker:
         )
         self.messages = [
             {"role": "system", "content": matchmaker_template},
-            {"role": "user", "content": "男生情况: {MALE_INFO}\n女生情况: {FEMALE_INFO}"}
+            {"role": "system", "content": "男生情况: {MALE_INFO}\n女生情况: {FEMALE_INFO}"}
         ]
 
     def generate_matchmaking_copy(self, context):
 
-        self.messages[1]["content"] = self.messages[1]["content"].format(**context)
         completion = self.client.chat.completions.create(
             model="ep-20250423125256-sj472",
             messages=self.messages,
